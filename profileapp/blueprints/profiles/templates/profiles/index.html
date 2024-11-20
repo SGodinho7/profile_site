@@ -4,6 +4,11 @@
 
 {% block content %}
 {% include 'partial/navbar.html' %}
-<br>
-<h1>Profiles Page</h1>
+<div style="margin: 25px">
+	<h1>Profiles Page</h1>
+	<br>
+	<a href="{{ url_for('profiles.register_profile') }}">
+		<button type="button" class="btn btn-primary">New Profile</button>
+	</a>
+</div>
 {% endblock %}

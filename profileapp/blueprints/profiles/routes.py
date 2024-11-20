@@ -8,3 +8,13 @@ profiles = Blueprint('profiles', __name__, template_folder='templates',
 @profiles.route('/', methods=['GET'])
 def index():
     return render_template('profiles/index.html')
+
+
+@profiles.route('/register-profile', methods=['GET'])
+def register_profile():
+    return render_template('profiles/register.html')
+
+
+@profiles.route('/post-profile', methods=['POST'])
+def post_profile():
+    ...
