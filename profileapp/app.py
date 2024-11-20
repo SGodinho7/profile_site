@@ -13,8 +13,10 @@ def create_app():
 
     # import blueprints here
     from profileapp.blueprints.core.routes import core
+    from profileapp.blueprints.profiles.routes import profiles
 
     app.register_blueprint(core, url_prefix='/')
+    app.register_blueprint(profiles, url_prefix='/profiles')
 
     migrate = Migrate(app, db)
 

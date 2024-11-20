@@ -7,4 +7,4 @@ profiles = Blueprint('profiles', __name__, template_folder='templates',
 
 @profiles.route('/', methods=['GET'])
 def index():
-    render_template('profiles/index.html')
+    return render_template('profiles/index.html')
