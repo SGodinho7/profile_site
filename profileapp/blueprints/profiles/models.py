@@ -6,6 +6,7 @@ class Profile(db.Model):
 
     pid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False)
+    email = db.Column(db.Text, nullable=False)
     age = db.Column(db.Integer, nullable=False)
     address = db.Column(db.Text, nullable=False)
     sex = db.Column(db.Text, nullable=False)
