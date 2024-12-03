@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, jsonify
 from profileapp.app import db
 
 profiles = Blueprint('profiles', __name__, template_folder='templates',
@@ -17,4 +17,6 @@ def register_profile():
 
 @profiles.route('/post-profile', methods=['POST'])
 def post_profile():
-    ...
+    data = request.get_json()
+
+    return jsonify(f'{data}')

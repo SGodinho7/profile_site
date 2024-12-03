@@ -7,7 +7,7 @@
 <div style="margin: 25px;">
 	<h1>Register Profile</h1>
 	<br>
-	<form method="post" style="width: 50%;">
+	<form method="post" id="profile-form" style="width: 50%;">
 		<label for="name" class="form-label">Name</label>
 		<input type="text" id="name" name="name" class="form-control"> 
 		<label for="email" class="form-label">E-Mail</label>
@@ -24,7 +24,11 @@
 			<option value="O">Other</option>
 		</select>
 		<br>
-		<button type="submit" onclick="postProfile({{ url_for('profiles.post_profile') }})" class="btn btn-primary">Register</button>
+		<button type="submit" class="btn btn-primary">Register</button>
 	</form>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/profiles/static/js/post_profile.js"></script>
 {% endblock %}
