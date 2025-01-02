@@ -20,10 +20,15 @@
 				<li class="list-group-item">Age: {{ profile.age }}</li>
 				<li class="list-group-item">Address: {{ profile.address }}</li>
 				<li class="list-group-item">Sex: {{ profile.sex }}</li>
+				<li class="list-group-item"><button type="button" class="btn btn-danger" onclick="deleteProfile('{{ url_for('profiles.delete_profile', pid=profile.pid) }}')">Delete</button></li>
 			</ul>
 		</div>
 	</div>
 	<br>
 	{% endfor %}
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/profiles/static/js/delete_profile.js"></script>
 {% endblock %}

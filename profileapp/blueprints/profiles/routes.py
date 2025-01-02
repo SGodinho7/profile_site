@@ -29,3 +29,11 @@ def post_profile():
     db.session.commit()
 
     return jsonify("{'message': 'Success'}")
+
+
+@profiles.route('/delete-profile/<pid>', methods=['DELETE'])
+def delete_profile(pid):
+    Profile.query.filter(Profile.pid == pid).delete()
+    db.session.commit()
+
+    return jsonify("{'message': 'Success'}")
