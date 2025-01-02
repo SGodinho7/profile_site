@@ -22,4 +22,5 @@ async function postProfile() {
 form.addEventListener('submit', (event) => {
 	event.preventDefault();
 	postProfile();
+	form.reset();
 });
