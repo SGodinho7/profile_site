@@ -1,13 +1,14 @@
-const form = document.querySelector('#profile-form')
+const form = document.querySelector('#profile-update-form')
 
-async function postProfile() {
-	form_data = new FormData(form);
+async function updateProfile() {
+	const form_data = new FormData(form);
 	var data = Object.fromEntries(form_data);
+	data.pid = Number(data.pid);
 	data.age = Number(data.age);
 
 	try {
-		const response = await fetch('/profiles/post-profile', {
-			method: 'POST',
+		const response = await fetch('/profiles/put-profile', {
+			method: 'PUT',
 			headers: {
 				"Content-Type": "application/json; charset=utf-8"
 			},
@@ -21,7 +22,8 @@ async function postProfile() {
 	window.location.replace('/profiles');
 }
 
+
 form.addEventListener('submit', (event) => {
 	event.preventDefault();
-	postProfile();
+	updateProfile();
 });

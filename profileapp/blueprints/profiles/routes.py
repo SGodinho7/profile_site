@@ -21,6 +21,13 @@ def view_profile(pid):
     return render_template('profiles/view.html', profile=profile)
 
 
+@profiles.route('/update-profile/<pid>', methods=['GET'])
+def update_profile(pid):
+    profile = db.get_or_404(Profile, pid)
+
+    return render_template('profiles/update.html', profile=profile)
+
+
 @profiles.route('/register-profile', methods=['GET'])
 def register_profile():
     return render_template('profiles/register.html')
@@ -43,6 +50,22 @@ def delete_profile(pid):
     profile = db.session.get(Profile, pid)
 
     db.session.delete(profile)
+    db.session.commit()
+
+    return jsonify("{'message': 'Success'}")
+
+
+@profiles.route('/put-profile', methods=['PUT'])
+def put_profile():
+    data = request.get_json()
+    profile = db.session.get(Profile, data['pid'])
+
+    profile.name = data['name']
+    profile.email = data['email']
+    profile.age = data['age']
+    profile.address = data['address']
+    profile.sex = data['sex']
+
     db.session.commit()
 
     return jsonify("{'message': 'Success'}")

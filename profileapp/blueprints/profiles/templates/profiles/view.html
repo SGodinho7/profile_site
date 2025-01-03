@@ -13,5 +13,7 @@
 	<h5>Sex: {{ profile.sex }}</h5>
 	<br>
 	<a href="{{ url_for('profiles.index') }}"><button type="button" class="btn btn-primary">Back</button></a>
+	<a href="{{ url_for('profiles.update_profile', pid=profile.pid) }}"><button type="button"
+			class="btn btn-primary">Change Info</button></a>
 </div>
 {% endblock %}
