@@ -40,7 +40,9 @@ def post_profile():
 
 @profiles.route('/delete-profile/<pid>', methods=['DELETE'])
 def delete_profile(pid):
-    Profile.query.filter(Profile.pid == pid).delete()
+    profile = db.session.get(Profile, pid)
+
+    db.session.delete(profile)
     db.session.commit()
 
     return jsonify("{'message': 'Success'}")
