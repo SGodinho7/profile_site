@@ -14,6 +14,13 @@ def index():
     return render_template('profiles/index.html', profiles=profiles)
 
 
+@profiles.route('/view-profile/<pid>', methods=['GET'])
+def view_profile(pid):
+    profile = db.get_or_404(Profile, pid)
+
+    return render_template('profiles/view.html', profile=profile)
+
+
 @profiles.route('/register-profile', methods=['GET'])
 def register_profile():
     return render_template('profiles/register.html')

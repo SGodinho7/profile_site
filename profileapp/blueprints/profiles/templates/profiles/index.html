@@ -20,7 +20,7 @@
 				<li class="list-group-item">Age: {{ profile.age }}</li>
 				<li class="list-group-item">Address: {{ profile.address }}</li>
 				<li class="list-group-item">Sex: {{ profile.sex }}</li>
-				<li class="list-group-item"><button type="button" class="btn btn-danger" onclick="deleteProfile('{{ url_for('profiles.delete_profile', pid=profile.pid) }}')">Delete</button></li>
+				<li class="list-group-item"><a href="{{ url_for('profiles.view_profile', pid=profile.pid) }}"><button type="button" class="btn btn-primary">View</button></a> | <button type="button" class="btn btn-danger" onclick="deleteProfile('{{ url_for('profiles.delete_profile', pid=profile.pid) }}')">Delete</button></li>
 			</ul>
 		</div>
 	</div>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ profile.name }}'s Profile{% endblock %}
+
+{% block content %}
+{% include 'partial/navbar.html' %}
+<div style="margin: 25px">
+	<h1>{{ profile.name }}</h1>
+	<br>
+	<h5>E-Mail: {{ profile.email }}</h5>
+	<h5>Age: {{ profile.age }}</h5>
+	<h5>Address: {{ profile.address }}</h5>
+	<h5>Sex: {{ profile.sex }}</h5>
+	<br>
+	<a href="{{ url_for('profiles.index') }}"><button type="button" class="btn btn-primary">Back</button></a>
+</div>
+{% endblock %}
