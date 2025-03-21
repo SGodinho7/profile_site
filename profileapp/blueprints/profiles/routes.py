@@ -37,7 +37,7 @@ def register_profile():
 def post_profile():
     data = request.get_json()
     profile = Profile(name=data['name'], email=data['email'],
-                      age=data['age'], address=data['address'], sex=data['sex'])
+                      age=data['age'], address=data['address'], sex=data['sex'], image_uuid='default.png')
 
     db.session.add(profile)
     db.session.commit()
