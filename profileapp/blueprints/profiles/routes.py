@@ -37,9 +37,14 @@ def register_profile():
 
 @profiles.route('/post-profile', methods=['POST'])
 def post_profile():
-    data = request.get_json()
+    data = request.form
     profile = Profile(name=data['name'], email=data['email'],
-                      age=data['age'], address=data['address'], sex=data['sex'], image_uuid='default.png')
+                      age=int(data['age']), address=data['address'], sex=data['sex'], image_uuid='default.png')
+    if request.files['image'].filename != '':
+        profile.image_uuid = f'{uuid.uuid4()}.jpg'
+        img = request.files['image']
+        img.save(
+            f'profileapp/blueprints/profiles/static/img/{profile.image_uuid}')
 
     db.session.add(profile)
     db.session.commit()
@@ -68,7 +73,7 @@ def put_profile():
     profile.address = data['address']
     profile.sex = data['sex']
 
-    if 'image' in request.files:
+    if request.files['image'].filename != '':
         profile.image_uuid = f'{uuid.uuid4()}.jpg'
         img = request.files['image']
         img.save(
