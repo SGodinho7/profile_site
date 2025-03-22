@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify
 
+import uuid
+
 from profileapp.app import db
 from profileapp.blueprints.profiles.models import Profile
 
@@ -57,14 +59,20 @@ def delete_profile(pid):
 
 @profiles.route('/put-profile', methods=['PUT'])
 def put_profile():
-    data = request.get_json()
-    profile = db.session.get(Profile, data['pid'])
+    data = request.form
+    profile = db.session.get(Profile, int(data['pid']))
 
     profile.name = data['name']
     profile.email = data['email']
-    profile.age = data['age']
+    profile.age = int(data['age'])
     profile.address = data['address']
     profile.sex = data['sex']
+
+    if 'image' in request.files:
+        profile.image_uuid = f'{uuid.uuid4()}.jpg'
+        img = request.files['image']
+        img.save(
+            f'profileapp/blueprints/profiles/static/img/{profile.image_uuid}')
 
     db.session.commit()
 

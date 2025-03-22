@@ -7,7 +7,8 @@
 <div style="margin: 25px">
 	<h1>{{ profile.name }}</h1>
 	<br>
-	<form method="put" id="profile-update-form" style="width: 50%;">
+	<form method="put" id="profile-update-form" enctype="multipart/form-data" style="width: 50%;">
+		<input type="file" id="image" name="image" accept="image/png, image/jpeg" class="form-control">
 		<label for="pid" class="form-label">Profile ID</label>
 		<input type="text" id="pid" name="pid" class="form-control" value="{{ profile.pid }}" readonly>
 		<label for="name" class="form-label">Name</label>
