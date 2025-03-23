@@ -39,7 +39,8 @@ def register_profile():
 def post_profile():
     data = request.form
     profile = Profile(name=data['name'], email=data['email'],
-                      age=int(data['age']), address=data['address'], sex=data['sex'], image_uuid='default.png')
+                      age=int(data['age']), address=data['address'],
+                      sex=data['sex'], image_uuid='default.png')
     if request.files['image'].filename != '':
         profile.image_uuid = f'{uuid.uuid4()}.jpg'
         img = request.files['image']
