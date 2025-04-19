@@ -9,6 +9,7 @@ profiles = Blueprint('profiles', __name__, template_folder='templates',
                      static_folder='static', static_url_path='/static')
 
 
+# profiles display page
 @profiles.route('/', methods=['GET'])
 def index():
     profiles = Profile.query.all()
@@ -16,6 +17,7 @@ def index():
     return render_template('profiles/index.html', profiles=profiles)
 
 
+# view profile page
 @profiles.route('/view-profile/<pid>', methods=['GET'])
 def view_profile(pid):
     profile = db.get_or_404(Profile, pid)
@@ -23,6 +25,7 @@ def view_profile(pid):
     return render_template('profiles/view.html', profile=profile)
 
 
+# update profile form page
 @profiles.route('/update-profile/<pid>', methods=['GET'])
 def update_profile(pid):
     profile = db.get_or_404(Profile, pid)
@@ -30,11 +33,13 @@ def update_profile(pid):
     return render_template('profiles/update.html', profile=profile)
 
 
+# register profile form page
 @profiles.route('/register-profile', methods=['GET'])
 def register_profile():
     return render_template('profiles/register.html')
 
 
+# post profile form data to database
 @profiles.route('/post-profile', methods=['POST'])
 def post_profile():
     data = request.form
@@ -53,6 +58,7 @@ def post_profile():
     return jsonify("{'message': 'Success'}")
 
 
+# delete profile from database
 @profiles.route('/delete-profile/<pid>', methods=['DELETE'])
 def delete_profile(pid):
     profile = db.session.get(Profile, pid)
@@ -63,6 +69,7 @@ def delete_profile(pid):
     return jsonify("{'message': 'Success'}")
 
 
+# update profile on database with form data
 @profiles.route('/put-profile', methods=['PUT'])
 def put_profile():
     data = request.form
