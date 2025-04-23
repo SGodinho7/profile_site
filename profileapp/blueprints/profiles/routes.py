@@ -47,7 +47,11 @@ def post_profile():
                       age=int(data['age']), address=data['address'],
                       sex=data['sex'], image_uuid='default.png')
     if request.files['image'].filename != '':
-        profile.image_uuid = f'{uuid.uuid4()}.jpg'
+        if ".png" in request.files['image'].filename:
+            profile.image_uuid = f'{uuid.uuid4()}.png'
+        else:
+            profiel.image_uuid = f'{uuid.uuid4()}.jpg'
+      
         img = request.files['image']
         img.save(
             f'profileapp/blueprints/profiles/static/img/{profile.image_uuid}')
@@ -82,7 +86,11 @@ def put_profile():
     profile.sex = data['sex']
 
     if request.files['image'].filename != '':
-        profile.image_uuid = f'{uuid.uuid4()}.jpg'
+        if ".png" in request.files['image'].filename:
+            profile.image_uuid = f'{uuid.uuid4()}.png'
+        else:
+            profiel.image_uuid = f'{uuid.uuid4()}.jpg'
+      
         img = request.files['image']
         img.save(
             f'profileapp/blueprints/profiles/static/img/{profile.image_uuid}')
