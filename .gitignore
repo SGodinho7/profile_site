@@ -66,6 +66,7 @@ instance/
 .webassets-cache
 migrations/
 *.jpg
+*.png
 
 # Scrapy stuff:
 .scrapy
